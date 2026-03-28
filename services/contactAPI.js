@@ -7,7 +7,7 @@ contactApi.getAgenda = async () => {
     try {
         
         const resp = await fetch(url + '/agendas/Alicia')
-        if (resp.statur == 404) return contactApi.createAgenda();
+        if (resp.status == 404) return contactApi.createAgenda();
         if (!resp.ok) throw new Error('Error getting agenda')
         const data = await resp.json();
         return data
@@ -31,7 +31,7 @@ contactApi.createAgenda = async () => {
         return data
     } catch (err) {
         console.log(err)
-        
+        return {contacts:[]};
 
     }
 }
