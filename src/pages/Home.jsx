@@ -17,11 +17,12 @@ export const Home = () => {
 	}))
   },[])
 
+  console.log("Contenido de store.contactsData",store.contactsData);
 	return (
 		<div className="text-center mt-5">
 			<Link className="btn btn-primary" to={'/create'}>Create Contact</Link>
 			{
-				store.contactsData.contacts?.map(el=> <Card key={el.id} name={el.name} phone={el.phone} mail={el.mail}/>)
+				store.contactsData.contacts?.map(el=> <Card key={el.id} name={el.name} phone={el.phone} mail={el.email}/>)
 			}
 		</div>
 		
