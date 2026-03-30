@@ -1,23 +1,28 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import contactApi from "../../services/contactAPI"
-const NewContact = () => {
+import useGlobalReducer from "../hooks/useGlobalReducer"
+
+const EditContact = () => {
+    const {store} = useGlobalReducer();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        name: '',
-        phone: '',
-        email: '',
-        address: ''
+        id: store.selectedContact?.id || '',
+        name: store.selectedContact?.name || '',
+        phone: store.selectedContact?.phone || '',
+        email: store.selectedContact?.email || '',
+        address: store.selectedContact?.address || ''
     })
     const handleChange = e => {
+
         setFormData({ ...formData, [e.target.name]: e.target.value })
 
     }
     const handleSubmit =async (e) => {
         e.preventDefault()
-        const result = await contactApi.createContact(formData)
+        const result = await contactApi.editContact(formData)
         if (result) {
-           
+        
             navigate("/")
         }
     }
@@ -53,4 +58,4 @@ const NewContact = () => {
     )
 }
 
-export default NewContact
+export default EditContact

@@ -1,5 +1,22 @@
+import { useNavigate } from "react-router-dom"
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
-const Card = ({name, phone, mail, address}) => {
+const Card = ({name, phone, mail, address,cid}) => {
+    const navigate = useNavigate();
+    const {store, dispatch} = useGlobalReducer()
+    const handleNavigate = () => {
+        dispatch({
+            type:'selectedContact',
+            payload:{
+                id: cid,
+                name: name,
+                phone: phone,
+                email: mail, 
+                address: address
+            }
+        })
+        navigate('/editcontact')
+    } 
     return (
 
         <div className="list-group-item p-4">
@@ -27,13 +44,18 @@ const Card = ({name, phone, mail, address}) => {
                 </div>
 
                 <div className="col-md-2 text-end d-flex justify-content-end align-self-start">
-                    <button className="btn btn-link text-dark p-2">
+                    {/* Editar */}
+                    <button className="btn btn-link text-dark p-2" onClick={()=>handleNavigate(cid)}>
                         <i className="fas fa-pencil-alt"></i>
                     </button>
+
+                    {/* Borrar */}
                     <button className="btn btn-link text-dark p-2" >
                         <i className="fas fa-trash-alt"></i>
                     </button>
                 </div>
+
+
            
             </div>
         </div>

@@ -53,4 +53,21 @@ contactApi.createContact = async (newContact) => {
     }
 }
 
+contactApi.editContact = async (infoContact) => {
+    try {
+        const resp = await fetch(url + '/agendas/Alicia/contacts/'+ infoContact.id, {
+            method: "PUT",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(infoContact)
+        })
+        if (!resp.ok) throw new Error('Error getting agenda')
+        const data = await resp.json();
+        return data
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export default contactApi
