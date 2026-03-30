@@ -8,26 +8,37 @@ export const Home = () => {
 
 	const { store, dispatch } = useGlobalReducer()
 
-	useEffect(() => {
+
+	const loadContacts = () => {
 		contactApi.getAgenda().then(data => dispatch({
 			type: 'updateContactData',
-			payload: {
-				data
-			}
-		}))
-	}, [])
+			payload: { data }
+		}));
+	};
+
+	useEffect(() => {
+		loadContacts();
+	}, []);
+
+	const handleDelete = async (id) => {
+		const success = await contactApi.deleteContact(id);
+		if (success) {
+			loadContacts();
+		}
+	};
+
 
 	console.log("Contenido de store.contactsData", store.contactsData);
 	return (
 		<div className="container mt-5">
 			<div className="d-flex justify-content-end mb-3">
-			<Link className="btn btn-primary" to={'/create'}>Create Contact</Link>
+				<Link className="btn btn-primary" to={'/create'}>Create Contact</Link>
 			</div>
 			<div className="list-group border shadow-sm rounded">
-			{
-				store.contactsData.contacts?.map(el=> <CardContact key={el.id} cid={el.cid} name={el.name} phone={el.phone} mail={el.email} address={el.address}/>)
-			}
-		</div>
+				{
+					store.contactsData.contacts?.map(el => <CardContact key={el.id} cid={el.cid} name={el.name} phone={el.phone} mail={el.email} address={el.address} onDelete={() => handleDelete(el.id)} />)
+				}
+			</div>
 		</div>
 
 	);

@@ -70,4 +70,19 @@ contactApi.editContact = async (infoContact) => {
     }
 }
 
+contactApi.deleteContact = async (id) => {
+    try {
+        const resp = await fetch(url + '/agendas/Alicia/contacts/'+ id, {
+            method: "DELETE",
+            
+        })
+        if (!resp.ok) throw new Error('Error deleting contact')
+        
+        return true;
+    } catch (err) {
+        console.log(err)
+        return false;
+    }
+}
+
 export default contactApi

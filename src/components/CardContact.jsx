@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom"
 import useGlobalReducer from "../hooks/useGlobalReducer";
 
-const Card = ({name, phone, mail, address,cid}) => {
+const Card = ({name, phone, mail, address,cid, onDelete}) => {
     const navigate = useNavigate();
     const {store, dispatch} = useGlobalReducer()
+    
     const handleNavigate = () => {
         dispatch({
             type:'selectedContact',
@@ -50,7 +51,7 @@ const Card = ({name, phone, mail, address,cid}) => {
                     </button>
 
                     {/* Borrar */}
-                    <button className="btn btn-link text-dark p-2" >
+                    <button className="btn btn-link text-dark p-2" onClick={onDelete}>
                         <i className="fas fa-trash-alt"></i>
                     </button>
                 </div>
