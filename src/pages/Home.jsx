@@ -23,7 +23,7 @@ export const Home = () => {
 			<div className="d-flex justify-content-end mb-3">
 			<Link className="btn btn-primary" to={'/create'}>Create Contact</Link>
 			</div>
-			<div className="border shadow-sm rounded">
+			<div className="list-group border shadow-sm rounded">
 			{
 				store.contactsData.contacts?.map(el=> <Card key={el.id} name={el.name} phone={el.phone} mail={el.email} address={el.address}/>)
 			}
