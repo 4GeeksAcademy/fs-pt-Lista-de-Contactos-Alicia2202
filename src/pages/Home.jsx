@@ -1,5 +1,5 @@
 import contactApi from "../../services/contactAPI.js";
-import Card from "../components/Card.jsx";
+import CardContact from "../components/CardContact.jsx";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -25,7 +25,7 @@ export const Home = () => {
 			</div>
 			<div className="list-group border shadow-sm rounded">
 			{
-				store.contactsData.contacts?.map(el=> <Card key={el.id} name={el.name} phone={el.phone} mail={el.email} address={el.address}/>)
+				store.contactsData.contacts?.map(el=> <CardContact key={el.id} name={el.name} phone={el.phone} mail={el.email} address={el.address}/>)
 			}
 		</div>
 		</div>

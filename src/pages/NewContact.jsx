@@ -27,19 +27,19 @@ const NewContact = () => {
 
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <label htmlFor="name" className="form-label fw-bold">Full Name</label>
+                        <label htmlFor="name" className="form-label fw-bold" placeholder="Full Name">Full Name</label>
                         <input className="form-control" type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
                     </div>
                     <div className=" mb-3">
-                        <label htmlFor="email" className="form-label fw-bold">Email</label>
+                        <label htmlFor="email" className="form-label fw-bold" placeholder="Enter Email">Email</label>
                         <input className="form-control" type="text" id="email" name="phone" value={formData.phone} onChange={handleChange} />
                     </div>
                     <div className=" mb-3">
-                        <label htmlFor="phone" className="form-label fw-bold">Phone</label>
+                        <label htmlFor="phone" className="form-label fw-bold" placeholder="Enter Phone">Phone</label>
                         <input className="form-control" type="text" id="phone" name="email" value={formData.email} onChange={handleChange} />
                     </div>
                     <div className=" mb-3">
-                        <label htmlFor="address" className="form-label fw-bold">Address</label>
+                        <label htmlFor="address" className="form-label fw-bold" placeholder="Enter Address">Address</label>
                         <input className="form-control" type="text" id="address" name="address" value={formData.address} onChange={handleChange} />
                     </div>
                     <button type="submit" className="btn btn-primary w-100">save</button>
