@@ -6,6 +6,7 @@ const Card = ({name, phone, mail, address,cid, onDelete}) => {
     const {store, dispatch} = useGlobalReducer()
     
     const handleNavigate = () => {
+        
         dispatch({
             type:'selectedContact',
             payload:{
@@ -46,7 +47,7 @@ const Card = ({name, phone, mail, address,cid, onDelete}) => {
 
                 <div className="col-md-2 text-end d-flex justify-content-end align-self-start">
                     {/* Editar */}
-                    <button className="btn btn-link text-dark p-2" onClick={()=>handleNavigate(cid)}>
+                    <button className="btn btn-link text-dark p-2" onClick={handleNavigate}>
                         <i className="fas fa-pencil-alt"></i>
                     </button>
 

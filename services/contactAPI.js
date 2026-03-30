@@ -45,7 +45,7 @@ contactApi.createContact = async (newContact) => {
             },
             body: JSON.stringify(newContact)
         })
-        if (!resp.ok) throw new Error('Error getting agenda')
+        if (!resp.ok) throw new Error('Error creating contact')
         const data = await resp.json();
         return data
     } catch (err) {
@@ -62,7 +62,7 @@ contactApi.editContact = async (infoContact) => {
             },
             body: JSON.stringify(infoContact)
         })
-        if (!resp.ok) throw new Error('Error getting agenda')
+        if (!resp.ok) throw new Error('Error editing contact')
         const data = await resp.json();
         return data
     } catch (err) {

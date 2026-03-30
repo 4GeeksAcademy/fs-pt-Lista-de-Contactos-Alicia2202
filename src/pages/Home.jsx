@@ -36,7 +36,7 @@ export const Home = () => {
 			</div>
 			<div className="list-group border shadow-sm rounded">
 				{
-					store.contactsData.contacts?.map(el => <CardContact key={el.id} cid={el.cid} name={el.name} phone={el.phone} mail={el.email} address={el.address} onDelete={() => handleDelete(el.id)} />)
+					store.contactsData.contacts?.map(el => <CardContact key={el.id} cid={el.id} name={el.name} phone={el.phone} mail={el.email} address={el.address} onDelete={() => handleDelete(el.id)} />)
 				}
 			</div>
 		</div>

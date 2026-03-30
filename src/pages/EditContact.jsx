@@ -1,28 +1,46 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import contactApi from "../../services/contactAPI"
 import useGlobalReducer from "../hooks/useGlobalReducer"
 
 const EditContact = () => {
-    const {store} = useGlobalReducer();
+    const { store } = useGlobalReducer();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        id: store.selectedContact?.id || '',
-        name: store.selectedContact?.name || '',
-        phone: store.selectedContact?.phone || '',
-        email: store.selectedContact?.email || '',
-        address: store.selectedContact?.address || ''
+        id: '',
+        name: '',
+        phone: '',
+        email: '',
+        address: ''
     })
+    useEffect(() => {
+      
+        if (store.selectedContact) {
+            setFormData({
+                id: store.selectedContact.id || '',
+                name: store.selectedContact.name || '',
+                phone: store.selectedContact.phone || '',
+                email: store.selectedContact.email || '',
+                address: store.selectedContact.address || ''
+            });
+        }
+    }, [store.selectedContact]);
     const handleChange = e => {
 
         setFormData({ ...formData, [e.target.name]: e.target.value })
 
     }
-    const handleSubmit =async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        
+
+        if (!formData.id) {
+            alert("Error: El ID del contacto se ha perdido. No se puede editar.");
+            return;
+        }
         const result = await contactApi.editContact(formData)
         if (result) {
-        
+
             navigate("/")
         }
     }
